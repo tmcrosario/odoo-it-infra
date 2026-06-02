@@ -13,21 +13,21 @@
                     <button name="action_draft"
                         type="object"
                         string="to Draft"
-                        states="active,stored,decommissioned" />
+                        invisible="state not in ['active','stored','decommissioned']" />
                     <button name="action_active"
                         type="object"
                         string="to Active"
-                        states="draft"
+                        invisible="state not in ['draft']"
                         class="oe_highlight" />
                     <button name="action_stored"
                         type="object"
                         string="to Stored"
-                        states="active"
+                        invisible="state not in ['active']"
                         class="oe_highlight" />
                     <button name="action_decommissioned"
                         type="object"
                         string="to Decommissioned"
-                        states="stored"
+                        invisible="state not in ['stored']"
                         class="oe_highlight" />
                     <field name="state"
                         widget="statusbar" />
@@ -90,7 +90,7 @@
         <field name="model">it_infra.network_device</field>
         <field name="arch"
             type="xml">
-            <tree decoration-muted="state=='cancelled'"
+            <list decoration-muted="state=='cancelled'"
                 decoration-info="state=='draft'">
                 <field name="name" />
                 <field name="brand_id" />
@@ -99,8 +99,8 @@
                     widget="many2one_unclickable" />
                 <field name="ip_address" />
                 <field name="state"
-                    invisible="True" />
-            </tree>
+                    column_invisible="True" />
+            </list>
         </field>
     </record>
 
@@ -109,7 +109,7 @@
         model="ir.actions.act_window">
         <field name="name">Routers</field>
         <field name="res_model">it_infra.network_device</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[(u'network_device_type', u'ilike', u'router')]</field>
         <field name="context">{'default_network_device_type': 'router'}</field>
     </record>
@@ -119,7 +119,7 @@
         model="ir.actions.act_window">
         <field name="name">Switches</field>
         <field name="res_model">it_infra.network_device</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[(u'network_device_type', u'ilike', u'switch')]</field>
         <field name="context">{'default_network_device_type': 'switch'}</field>
     </record>
@@ -129,7 +129,7 @@
         model="ir.actions.act_window">
         <field name="name">Access Points</field>
         <field name="res_model">it_infra.network_device</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[(u'network_device_type', u'ilike', u'ap')]</field>
         <field name="context">{'default_network_device_type': 'ap'}</field>
     </record>

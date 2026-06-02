@@ -38,18 +38,18 @@
                         <field name="description" />
                     </group>
                     <group>
-                        <group attrs="{'invisible':[('is_pendrive', '=', True)]}">
+                        <group invisible="is_pendrive">
                             <field name="supply_category_id"
                                 domain="[('parent_id', '!=', False)]" />
                             <field name="quantity" />
                             <field name="partner_id" />
                         </group>
-                        <group attrs="{'invisible':[('is_pendrive', '=', False)]}">
+                        <group invisible="not is_pendrive">
                             <field name="user_id" />
                             <field name="loan_date" />
                         </group>
                     </group>
-                    <notebook attrs="{'invisible':[('is_pendrive', '=', True)]}">
+                    <notebook invisible="is_pendrive">
                         <page string="Devices">
                             <field name="device_ids" />
                         </page>
@@ -66,12 +66,12 @@
         <field name="model">it_infra.supply</field>
         <field name="arch"
             type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="description" />
                 <field name="supply_category_id" />
                 <field name="quantity" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -82,12 +82,12 @@
         <field name="model">it_infra.supply</field>
         <field name="arch"
             type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="description" />
                 <field name="loan_date" />
                 <field name="user_id" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -96,10 +96,10 @@
         model="ir.actions.act_window">
         <field name="name">Supplies</field>
         <field name="res_model">it_infra.supply</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[('is_pendrive', '=', False)]</field>
         <field name="view_ids"
-            eval="[(5, 0, 0),(0, 0, {'view_mode': 'tree', 'view_id': ref('it_infra.supply_view_tree')}),(0, 0, {'view_mode': 'form', 'view_id': ref('it_infra.supply_view_form')})]" />
+            eval="[(5, 0, 0),(0, 0, {'view_mode': 'list', 'view_id': ref('it_infra.supply_view_tree')}),(0, 0, {'view_mode': 'form', 'view_id': ref('it_infra.supply_view_form')})]" />
     </record>
 
     <!-- WINDOW ACTION -->
@@ -107,11 +107,11 @@
         model="ir.actions.act_window">
         <field name="name">Pendrives</field>
         <field name="res_model">it_infra.supply</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[('is_pendrive', '=', True)]</field>
         <field name="context">{'default_is_pendrive': True }</field>
         <field name="view_ids"
-            eval="[(5, 0, 0),(0, 0, {'view_mode': 'tree', 'view_id': ref('it_infra.supply_pendrive_view_tree')}),(0, 0, {'view_mode': 'form', 'view_id': ref('it_infra.supply_view_form')})]" />
+            eval="[(5, 0, 0),(0, 0, {'view_mode': 'list', 'view_id': ref('it_infra.supply_pendrive_view_tree')}),(0, 0, {'view_mode': 'form', 'view_id': ref('it_infra.supply_view_form')})]" />
     </record>
 
 

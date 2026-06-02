@@ -58,7 +58,8 @@ class Server(models.Model):
 
     def show_passwd(self):
         for server in self:
-            raise exceptions.except_orm(
-                _("Password for user '%s':") % server.username,
-                _("%s") % server.password,
+            raise exceptions.UserError(
+                _("Password for user '%s':") % server.username
+                + "\n"
+                + _("%s") % server.password
             )

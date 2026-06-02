@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class Category(models.Model):
@@ -8,11 +8,13 @@ class Category(models.Model):
 
     name = fields.Char(required=True)
 
-    def name_get(self):
-        result = []
+    @api.depends("name")
+    def _compute_display_name(self):
+        # NOTE: ``parent_id`` is defined on the inheriting models
+        # (device_category, supply_category), not on this base model, so it is
+        # intentionally not part of @api.depends here.
         for cat in self:
             prefix = None
-            if cat.parent_id:
-                prefix = cat.parent_id.name_get()[0][1] + " / "
-            result.append((cat.id, "%s %s" % (prefix or "", cat.name)))
-        return result
+            if "parent_id" in cat._fields and cat.parent_id:
+                prefix = cat.parent_id.display_name + " / "
+            cat.display_name = "%s %s" % (prefix or "", cat.name)

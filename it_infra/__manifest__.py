@@ -1,8 +1,9 @@
 {
     "name": "IT Infrastructure",
-    "version": "14.0.1.0.0",
+    "version": "19.0.1.0.0",
     "author": "Lisandro Gallo",
     "license": "AGPL-3",
+    "depends": ["base"],
     "data": [
         "security/it_infra_groups.xml",
         "security/ir.model.access.csv",

@@ -32,21 +32,21 @@
                     <button name="action_draft"
                         type="object"
                         string="to Draft"
-                        states="active,stored,decommissioned" />
+                        invisible="state not in ['active','stored','decommissioned']" />
                     <button name="action_active"
                         type="object"
                         string="to Active"
-                        states="draft"
+                        invisible="state not in ['draft']"
                         class="oe_highlight" />
                     <button name="action_stored"
                         type="object"
                         string="to Stored"
-                        states="active"
+                        invisible="state not in ['active']"
                         class="oe_highlight" />
                     <button name="action_decommissioned"
                         type="object"
                         string="to Decommissioned"
-                        states="stored"
+                        invisible="state not in ['stored']"
                         class="oe_highlight" />
                     <field name="state"
                         widget="statusbar" />
@@ -60,7 +60,7 @@
                     </group>
                     <group>
                         <field name="hosted_in_id"
-                            attrs="{'invisible':[('server_type', 'not in', ['vm', 'docker'])]}" />
+                            invisible="server_type not in ['vm', 'docker']" />
                         <field name="webadmin"
                             widget="url" />
                         <field name="category_ids"
@@ -91,7 +91,7 @@
                             </div>
                         </group>
                         <group string="Inventory"
-                            attrs="{'invisible':[('server_type', 'not in', ['bare_metal', 'bare_metal_sa', 'hypervisor'])]}">
+                            invisible="server_type not in ['bare_metal', 'bare_metal_sa', 'hypervisor']">
                             <field name="stock_number" />
                             <field name="purchase_date" />
                             <field name="warranty" />
@@ -105,13 +105,13 @@
                     </group>
                     <notebook>
                         <page string="Hosted Servers"
-                            attrs="{'invisible':[u'|', (u'server_type', u'=', u'bare_metal_sa'), (u'hosted_in_id', u'!=', False)]}">
+                            invisible="server_type == 'bare_metal_sa' or hosted_in_id">
                             <field name="hosted_server_ids">
-                                <tree>
+                                <list>
                                     <field name="name" />
                                     <field name="category_ids" />
                                     <field name="ip_address" />
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Hardware">
@@ -130,7 +130,7 @@
         <field name="model">it_infra.server</field>
         <field name="arch"
             type="xml">
-            <tree decoration-muted="state=='cancelled'"
+            <list decoration-muted="state=='cancelled'"
                 decoration-info="state=='draft'">
                 <field name="name" />
                 <field name="webadmin"
@@ -144,8 +144,8 @@
                     widget="many2one_unclickable" />
                 <field name="ip_address" />
                 <field name="state"
-                    invisible="True" />
-            </tree>
+                    column_invisible="True" />
+            </list>
         </field>
     </record>
 
@@ -154,7 +154,7 @@
         model="ir.actions.act_window">
         <field name="name">Servers</field>
         <field name="res_model">it_infra.server</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="context">{'search_default_filter_state': True }</field>
         <field name="view_id"
             ref="server_view_tree" />

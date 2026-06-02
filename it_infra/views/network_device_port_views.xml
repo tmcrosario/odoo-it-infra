@@ -8,7 +8,7 @@
         <field name="model">it_infra.network_device_port</field>
         <field name="arch"
             type="xml">
-            <tree editable="top"
+            <list editable="top"
                 decoration-muted="state==False">
                 <field name="name" />
                 <field name="mac_address" />
@@ -19,7 +19,7 @@
                 <field name="connected_to" />
                 <field name="cable_color" />
                 <field name="state" />
-            </tree>
+            </list>
         </field>
     </record>
 

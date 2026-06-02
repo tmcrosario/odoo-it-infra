@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class Software(models.Model):
@@ -20,23 +20,16 @@ class Software(models.Model):
         required=True,
     )
 
-    def name_get(self):
-        result = []
+    @api.depends(
+        "name", "version", "architecture", "category_id.parent_id.name"
+    )
+    def _compute_display_name(self):
         for soft in self:
             if soft.category_id.parent_id.name == "Operating System":
-                result.append(
-                    (
-                        soft.id,
-                        "%s %s %s"
-                        % (
-                            soft.name,
-                            soft.version or "",
-                            soft.architecture or "",
-                        ),
-                    )
+                soft.display_name = "%s %s %s" % (
+                    soft.name,
+                    soft.version or "",
+                    soft.architecture or "",
                 )
             else:
-                result.append(
-                    (soft.id, "%s %s" % (soft.name, soft.version or ""))
-                )
-        return result
+                soft.display_name = "%s %s" % (soft.name, soft.version or "")
