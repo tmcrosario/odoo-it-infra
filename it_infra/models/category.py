@@ -2,7 +2,6 @@ from odoo import api, fields, models
 
 
 class Category(models.Model):
-
     _name = "it_infra.category"
     _description = "Category"
 

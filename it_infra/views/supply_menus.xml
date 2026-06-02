@@ -1,29 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <menuitem name="Consumer Goods"
+    <menuitem
+        name="Consumer Goods"
         id="goods_menu"
         sequence="50"
         parent="root_menu"
-        groups="group_user" />
+        groups="group_user"
+    />
 
-    <menuitem name="Supplies"
+    <menuitem
+        name="Supplies"
         id="supply_menu"
         sequence="10"
         action="supply_action_view_form"
         parent="goods_menu"
-        groups="group_user" />
+        groups="group_user"
+    />
 
-    <menuitem name="Pendrives"
+    <menuitem
+        name="Pendrives"
         id="supply_pendrive_menu"
         sequence="20"
         action="supply_pendrive_action_view_form"
         parent="goods_menu"
-        groups="group_user" />
+        groups="group_user"
+    />
 
-    <menuitem name="Supplies"
+    <menuitem
+        name="Supplies"
         id="supply_configuration_menu"
         sequence="30"
-        parent="configuration_menu" />
-
+        parent="configuration_menu"
+    />
 </odoo>

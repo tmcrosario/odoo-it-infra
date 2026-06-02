@@ -1,24 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <menuitem name="Assets"
+    <menuitem
+        name="Assets"
         id="device_menu"
         sequence="40"
         parent="root_menu"
-        groups="group_user" />
+        groups="group_user"
+    />
 
-    <menuitem name="Printers"
+    <menuitem
+        name="Printers"
         id="device_printer_menu"
         sequence="5"
         action="device_printer_action_view_form"
         parent="device_menu"
-        groups="group_user" />
+        groups="group_user"
+    />
 
-    <menuitem name="Scanners"
+    <menuitem
+        name="Scanners"
         id="device_scanner_menu"
         sequence="10"
         action="device_scanner_action_view_form"
         parent="device_menu"
-        groups="group_user" />
-
+        groups="group_user"
+    />
 </odoo>

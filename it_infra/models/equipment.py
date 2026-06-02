@@ -2,11 +2,11 @@ import re
 from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
+
 from odoo import _, api, exceptions, fields, models
 
 
 class Equipment(models.Model):
-
     _name = "it_infra.equipment"
     _description = "Equipment"
     _order = "purchase_date desc"

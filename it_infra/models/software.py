@@ -2,7 +2,6 @@ from odoo import api, fields, models
 
 
 class Software(models.Model):
-
     _name = "it_infra.software"
     _description = "Software"
 
@@ -20,9 +19,7 @@ class Software(models.Model):
         required=True,
     )
 
-    @api.depends(
-        "name", "version", "architecture", "category_id.parent_id.name"
-    )
+    @api.depends("name", "version", "architecture", "category_id.parent_id.name")
     def _compute_display_name(self):
         for soft in self:
             if soft.category_id.parent_id.name == "Operating System":

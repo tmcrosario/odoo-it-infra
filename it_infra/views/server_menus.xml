@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <menuitem name="Servers"
+    <menuitem
+        name="Servers"
         id="server_menu"
         sequence="10"
         action="server_action_view_form"
         parent="root_menu"
-        groups="group_user" />
-
+        groups="group_user"
+    />
 </odoo>

@@ -2,7 +2,6 @@ from odoo import fields, models
 
 
 class NetworkDevice(models.Model):
-
     _name = "it_infra.network_device"
     _description = "Network Device"
     _inherit = "it_infra.equipment"
@@ -25,9 +24,7 @@ class NetworkDevice(models.Model):
 
     password = fields.Char()
 
-    location_id = fields.Many2one(
-        comodel_name="it_infra.location", required=True
-    )
+    location_id = fields.Many2one(comodel_name="it_infra.location", required=True)
 
     network_device_port_ids = fields.One2many(
         comodel_name="it_infra.network_device_port",

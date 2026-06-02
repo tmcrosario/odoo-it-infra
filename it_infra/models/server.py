@@ -2,7 +2,6 @@ from odoo import _, exceptions, fields, models
 
 
 class Server(models.Model):
-
     _name = "it_infra.server"
     _description = "Server"
     _inherit = "it_infra.computer"
@@ -28,9 +27,7 @@ class Server(models.Model):
         string="Categories",
     )
 
-    location_id = fields.Many2one(
-        comodel_name="it_infra.location", required=True
-    )
+    location_id = fields.Many2one(comodel_name="it_infra.location", required=True)
 
     internal_location = fields.Boolean(related="location_id.internal")
 

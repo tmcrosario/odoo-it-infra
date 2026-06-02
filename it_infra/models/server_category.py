@@ -2,7 +2,6 @@ from odoo import fields, models
 
 
 class ServerCategory(models.Model):
-
     _name = "it_infra.server_category"
     _description = "Server Category"
 
@@ -25,6 +24,4 @@ class ServerCategory(models.Model):
         string="Childs",
     )
 
-    _sql_constraints = [
-        ("name_uniq", "unique(name)", "Server tags must be unique!")
-    ]
+    _sql_constraints = [("name_uniq", "unique(name)", "Server tags must be unique!")]

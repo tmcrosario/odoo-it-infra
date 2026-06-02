@@ -2,7 +2,6 @@ from odoo import fields, models
 
 
 class Workstation(models.Model):
-
     _name = "it_infra.workstation"
     _description = "Workstation"
     _inherit = "it_infra.computer"

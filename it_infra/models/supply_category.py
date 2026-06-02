@@ -2,7 +2,6 @@ from odoo import fields, models
 
 
 class SupplyCategory(models.Model):
-
     _name = "it_infra.supply_category"
     _description = "Supply Category"
     _inherit = "it_infra.category"

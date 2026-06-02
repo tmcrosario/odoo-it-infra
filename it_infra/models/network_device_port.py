@@ -2,7 +2,6 @@ from odoo import fields, models
 
 
 class NetworkDevicePort(models.Model):
-
     _name = "it_infra.network_device_port"
     _description = "Network Device Port"
 

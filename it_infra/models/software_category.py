@@ -2,7 +2,6 @@ from odoo import fields, models
 
 
 class SoftwareCategory(models.Model):
-
     _name = "it_infra.software_category"
     _description = "Software Category"
 

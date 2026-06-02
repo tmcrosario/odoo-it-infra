@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!-- TREE VIEW -->
-    <record id="provider_view_tree"
-        model="ir.ui.view">
+    <record id="provider_view_tree" model="ir.ui.view">
         <field name="name">it_infra.provider.view.tree</field>
         <field name="model">it_infra.provider</field>
-        <field name="arch"
-            type="xml">
+        <field name="arch" type="xml">
             <list>
                 <field name="name" />
                 <field name="ip_address" />
@@ -16,12 +13,10 @@
     </record>
 
     <!-- FORM VIEW -->
-    <record id="provider_view_form"
-        model="ir.ui.view">
+    <record id="provider_view_form" model="ir.ui.view">
         <field name="name">it_infra.provider.view.form</field>
         <field name="model">it_infra.provider</field>
-        <field name="arch"
-            type="xml">
+        <field name="arch" type="xml">
             <form>
                 <sheet>
                     <group>
@@ -50,11 +45,9 @@
     </record>
 
     <!-- WINDOW ACTION  -->
-    <record id="provider_action_view_form"
-        model="ir.actions.act_window">
+    <record id="provider_action_view_form" model="ir.actions.act_window">
         <field name="name">Providers</field>
         <field name="res_model">it_infra.provider</field>
         <field name="view_mode">list,form</field>
     </record>
-
 </odoo>

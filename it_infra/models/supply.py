@@ -2,7 +2,6 @@ from odoo import fields, models
 
 
 class Supply(models.Model):
-
     _name = "it_infra.supply"
     _description = "Supply"
 

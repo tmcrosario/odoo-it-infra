@@ -1,42 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!-- FORM VIEW -->
-    <record id="network_device_view_form"
-        model="ir.ui.view">
+    <record id="network_device_view_form" model="ir.ui.view">
         <field name="name">it_infra.network_device.view.form</field>
         <field name="model">it_infra.network_device</field>
-        <field name="arch"
-            type="xml">
+        <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_draft"
+                    <button
+                        name="action_draft"
                         type="object"
                         string="to Draft"
-                        invisible="state not in ['active','stored','decommissioned']" />
-                    <button name="action_active"
+                        invisible="state not in ['active','stored','decommissioned']"
+                    />
+                    <button
+                        name="action_active"
                         type="object"
                         string="to Active"
                         invisible="state not in ['draft']"
-                        class="oe_highlight" />
-                    <button name="action_stored"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="action_stored"
                         type="object"
                         string="to Stored"
                         invisible="state not in ['active']"
-                        class="oe_highlight" />
-                    <button name="action_decommissioned"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="action_decommissioned"
                         type="object"
                         string="to Decommissioned"
                         invisible="state not in ['stored']"
-                        class="oe_highlight" />
-                    <field name="state"
-                        widget="statusbar" />
+                        class="oe_highlight"
+                    />
+                    <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
                     <group>
                         <h1>
-                            <field name="name"
-                                placeholder="Name..." />
+                            <field name="name" placeholder="Name..." />
                         </h1>
                     </group>
                     <group>
@@ -54,9 +57,11 @@
                             <field name="username" />
                             <label for="password" />
                             <div>
-                                <field name="password"
+                                <field
+                                    name="password"
                                     password="True"
-                                    class="oe_inline" />
+                                    class="oe_inline"
+                                />
                             </div>
                         </group>
                         <group string="Inventory">
@@ -84,29 +89,26 @@
     </record>
 
     <!-- TREE VIEW -->
-    <record id="network_device_view_tree"
-        model="ir.ui.view">
+    <record id="network_device_view_tree" model="ir.ui.view">
         <field name="name">it_infra.network_device.view.tree</field>
         <field name="model">it_infra.network_device</field>
-        <field name="arch"
-            type="xml">
-            <list decoration-muted="state=='cancelled'"
-                decoration-info="state=='draft'">
+        <field name="arch" type="xml">
+            <list
+                decoration-muted="state=='cancelled'"
+                decoration-info="state=='draft'"
+            >
                 <field name="name" />
                 <field name="brand_id" />
                 <field name="model" />
-                <field name="location_id"
-                    widget="many2one_unclickable" />
+                <field name="location_id" widget="many2one_unclickable" />
                 <field name="ip_address" />
-                <field name="state"
-                    column_invisible="True" />
+                <field name="state" column_invisible="True" />
             </list>
         </field>
     </record>
 
     <!-- WINDOW ACTION  -->
-    <record id="network_device_router_action_view_form"
-        model="ir.actions.act_window">
+    <record id="network_device_router_action_view_form" model="ir.actions.act_window">
         <field name="name">Routers</field>
         <field name="res_model">it_infra.network_device</field>
         <field name="view_mode">list,form</field>
@@ -115,8 +117,7 @@
     </record>
 
     <!-- WINDOW ACTION  -->
-    <record id="network_device_switch_action_view_form"
-        model="ir.actions.act_window">
+    <record id="network_device_switch_action_view_form" model="ir.actions.act_window">
         <field name="name">Switches</field>
         <field name="res_model">it_infra.network_device</field>
         <field name="view_mode">list,form</field>
@@ -125,13 +126,14 @@
     </record>
 
     <!-- WINDOW ACTION  -->
-    <record id="network_device_access_point_action_view_form"
-        model="ir.actions.act_window">
+    <record
+        id="network_device_access_point_action_view_form"
+        model="ir.actions.act_window"
+    >
         <field name="name">Access Points</field>
         <field name="res_model">it_infra.network_device</field>
         <field name="view_mode">list,form</field>
         <field name="domain">[(u'network_device_type', u'ilike', u'ap')]</field>
         <field name="context">{'default_network_device_type': 'ap'}</field>
     </record>
-
 </odoo>
