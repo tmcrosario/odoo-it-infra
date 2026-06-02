@@ -59,10 +59,14 @@ Repo contains one module: `it_infra`.
 ### Security
 
 - `security/ir.model.access.csv`: columns unchanged (correct for 19.0).
-- `security/it_infra_groups.xml`: `res.groups` records carry
-  `<field name="category_id" ref="module_category_it_infra"/>`. In 19.0 this may need
-  migrating to a `privilege_id`/privilege record. Per spec this is a non-trivial change
-  — LEFT AS-IS and flagged below. No `groups_id` fields exist in any data record.
+- `security/it_infra_groups.xml`: **migrated to the 19.0 `res.groups.privilege`
+  pattern** (correction applied after confirming the authoritative form in the migrated
+  `tmc`/`me` modules). Added a `res.groups.privilege` record
+  (`res_groups_privilege_it_infra`, `category_id` → the `ir.module.category`); the two
+  `res.groups` now reference it via `privilege_id`. No `groups_id` fields exist in any
+  data record. (NB: the `category_id` occurrences in `views/*.xml` and
+  `data/software_data.xml` are the `it_infra.software`/`computer` model's own
+  `category_id` field — unrelated to res.groups — and were correctly left untouched.)
 
 ### Tests
 
@@ -121,11 +125,9 @@ Simple single-tuple boolean conversions (listed for completeness):
 
 ## Items left for human review
 
-- `security/it_infra_groups.xml`: the two `res.groups` records set
-  `<field name="category_id" ref="module_category_it_infra"/>` pointing at an
-  `ir.module.category`. Odoo 19.0 reworks group categorisation toward
-  `res.groups.privilege` / `privilege_id`. This was deliberately NOT changed (no
-  guessing of a privilege record). Verify the correct 19.0 form before deploy.
+- `security/it_infra_groups.xml`: RESOLVED — migrated to the 19.0 `res.groups.privilege`
+  pattern (see Security above), matching the migrated `tmc`/`me` modules. No longer a
+  leave-and-flag item.
 - `server.py` `show_passwd`: `except_orm` → `UserError` collapses the former two-field
   (title/body) dialog into a single message with a newline. Confirm the UX is
   acceptable; this is the closest faithful 19.0 equivalent.
@@ -135,25 +137,23 @@ Simple single-tuple boolean conversions (listed for completeness):
 
 ## Lint findings
 
-Auto-fixers (ruff-format, prettier-xml, end-of-file/whitespace) were applied and
-now pass. Remaining reporter findings (non-blocking, deliberately not chased):
+Auto-fixers (ruff-format, prettier-xml, end-of-file/whitespace) were applied and now
+pass. Remaining reporter findings (non-blocking, deliberately not chased):
 
-- `manifest-required-author` / `missing-readme` (pylint-odoo OCA rcfile): this is
-  a private module, not an OCA addon — expected, not changed.
-- `prefer-env-translation` (`equipment.py`, `server.py`): 19.0 prefers
-  `self.env._(...)` over the module-level `_`. Valid future cleanup; still works.
-- `translation-not-lazy` (`server.py:show_passwd`): the converted `UserError`
-  uses `_("...") % x`; lazy formatting is a style preference, left as-is.
-- `no-raise-unlink` (`server.py:unlink`): pre-existing pattern (server unlink
-  guards against deleting non-draft servers). Behavioral, not a 19.0 break —
-  left untouched.
-- `UP031` (% formatting) / `UP008` (`super(Server, self)`): ruff style hints in
-  the two ported `_compute_display_name` methods and `unlink`. Left as-is — the
-  `%` strings are reproduced verbatim from the old `name_get` to guarantee an
-  identical display value.
+- `manifest-required-author` / `missing-readme` (pylint-odoo OCA rcfile): this is a
+  private module, not an OCA addon — expected, not changed.
+- `prefer-env-translation` (`equipment.py`, `server.py`): 19.0 prefers `self.env._(...)`
+  over the module-level `_`. Valid future cleanup; still works.
+- `translation-not-lazy` (`server.py:show_passwd`): the converted `UserError` uses
+  `_("...") % x`; lazy formatting is a style preference, left as-is.
+- `no-raise-unlink` (`server.py:unlink`): pre-existing pattern (server unlink guards
+  against deleting non-draft servers). Behavioral, not a 19.0 break — left untouched.
+- `UP031` (% formatting) / `UP008` (`super(Server, self)`): ruff style hints in the two
+  ported `_compute_display_name` methods and `unlink`. Left as-is — the `%` strings are
+  reproduced verbatim from the old `name_get` to guarantee an identical display value.
 - `unknown-option-value` warnings come from the canonical OCA `.pylintrc` listing
-  message names not present in this pylint-odoo version — harmless; canonical
-  file kept verbatim.
+  message names not present in this pylint-odoo version — harmless; canonical file kept
+  verbatim.
 
 ## Translations
 
