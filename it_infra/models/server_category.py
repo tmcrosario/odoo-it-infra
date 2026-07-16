@@ -24,4 +24,4 @@ class ServerCategory(models.Model):
         string="Childs",
     )
 
-    _sql_constraints = [("name_uniq", "unique(name)", "Server tags must be unique!")]
+    _name_uniq = models.Constraint("unique(name)", "Server tags must be unique!")

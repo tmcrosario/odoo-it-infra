@@ -21,16 +21,10 @@ class Computer(models.Model):
 
     hardware_data = fields.Html()
 
-    _sql_constraints = [
-        ("name_unique", "unique(name)", "Computer name must be unique!"),
-        (
-            "ip_address_unique",
-            "unique(ip_address)",
-            "Computer IP address must be unique!",
-        ),
-        (
-            "hostname_unique",
-            "unique(hostname)",
-            "Computer hostname must be unique!",
-        ),
-    ]
+    _name_unique = models.Constraint("unique(name)", "Computer name must be unique!")
+    _ip_address_unique = models.Constraint(
+        "unique(ip_address)", "Computer IP address must be unique!"
+    )
+    _hostname_unique = models.Constraint(
+        "unique(hostname)", "Computer hostname must be unique!"
+    )
