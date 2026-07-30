@@ -42,16 +42,14 @@ class Server(models.Model):
     )
 
     def unlink(self):
+        # Validate every record before deleting any; returning inside the
+        # loop used to delete the rest without checking their state
         for server in self:
-            if server.state not in ("draft", "cancel"):
+            if server.state != "draft":
                 raise exceptions.UserError(
-                    _(
-                        "You cannot delete a server \
-                    which is not draft or cancelled."
-                    )
+                    _("You cannot delete a server which is not in draft state.")
                 )
-            res = super(Server, self).unlink()
-            return res
+        return super().unlink()
 
     def show_passwd(self):
         for server in self:
