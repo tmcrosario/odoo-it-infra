@@ -27,7 +27,7 @@ class NetworkDevicePort(models.Model):
 
     inter_vlan_routing = fields.Char()
 
-    connected_to = fields.Many2one(comodel_name="it_infra.equipment")
+    connected_to = fields.Many2one(comodel_name="it_infra.network_device")
 
     cable_color = fields.Selection(selection=_cable_colors_)
 
