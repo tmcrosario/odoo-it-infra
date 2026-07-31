@@ -10,8 +10,6 @@ class Computer(models.Model):
 
     username = fields.Char(required=True)
 
-    office = fields.Char()
-
     os_id = fields.Many2one(
         comodel_name="it_infra.software",
         string="Operating System",

@@ -13,7 +13,7 @@ class Category(models.Model):
         # (device_category, supply_category), not on this base model, so it is
         # intentionally not part of @api.depends here.
         for cat in self:
-            prefix = None
             if "parent_id" in cat._fields and cat.parent_id:
-                prefix = cat.parent_id.display_name + " / "
-            cat.display_name = "%s %s" % (prefix or "", cat.name)
+                cat.display_name = "%s / %s" % (cat.parent_id.display_name, cat.name)
+            else:
+                cat.display_name = cat.name

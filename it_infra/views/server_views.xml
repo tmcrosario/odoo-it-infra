@@ -142,15 +142,15 @@
         <field name="model">it_infra.server</field>
         <field name="arch" type="xml">
             <list
-                decoration-muted="state=='cancelled'"
+                decoration-muted="state=='decommissioned'"
                 decoration-info="state=='draft'"
             >
                 <field name="name" />
                 <field name="webadmin" widget="url" />
                 <field name="category_ids" widget="many2many_tags" />
-                <field name="location_id" widget="many2one_unclickable" />
+                <field name="location_id" />
                 <field name="server_type" />
-                <field name="os_id" widget="many2one_unclickable" />
+                <field name="os_id" />
                 <field name="ip_address" />
                 <field name="state" column_invisible="True" />
             </list>

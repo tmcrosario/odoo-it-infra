@@ -5,6 +5,7 @@
         id="root_menu"
         sequence="20"
         groups="group_user"
+        web_icon="it_infra,static/description/icon.png"
     />
 
     <menuitem

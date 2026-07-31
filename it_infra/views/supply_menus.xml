@@ -25,11 +25,4 @@
         parent="goods_menu"
         groups="group_user"
     />
-
-    <menuitem
-        name="Supplies"
-        id="supply_configuration_menu"
-        sequence="30"
-        parent="configuration_menu"
-    />
 </odoo>

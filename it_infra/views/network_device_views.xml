@@ -100,7 +100,7 @@
                 <field name="name" />
                 <field name="brand_id" />
                 <field name="model" />
-                <field name="location_id" widget="many2one_unclickable" />
+                <field name="location_id" />
                 <field name="ip_address" />
                 <field name="state" column_invisible="True" />
             </list>

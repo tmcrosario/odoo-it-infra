@@ -12,7 +12,7 @@
                     <field name="state" />
                     <filter
                         name="filter_state"
-                        string="Activo"
+                        string="Active"
                         domain="[('state', '=', 'active')]"
                     />
                 </group>
