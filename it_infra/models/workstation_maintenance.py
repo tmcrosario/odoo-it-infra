@@ -1,5 +1,3 @@
-from datetime import date
-
 from odoo import fields, models
 
 
@@ -10,6 +8,6 @@ class WorkstationMaintenance(models.Model):
 
     name = fields.Char(string="Description", required=True)
 
-    date = fields.Date(default=date.today(), required=True)
+    date = fields.Date(default=fields.Date.context_today, required=True)
 
     workstation_id = fields.Many2one(comodel_name="it_infra.workstation")
