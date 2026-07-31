@@ -95,6 +95,7 @@
                                     string="View Password"
                                     icon="fa-eye"
                                     type="object"
+                                    groups="it_infra.group_manager"
                                     class="oe_link oe_inline"
                                 />
                             </div>

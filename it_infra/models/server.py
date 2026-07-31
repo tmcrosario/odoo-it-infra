@@ -15,9 +15,9 @@ class Server(models.Model):
         ("docker", "Docker Stack"),
     ]
 
-    password = fields.Char()
+    password = fields.Char(groups="it_infra.group_manager")
 
-    open_ports = fields.Char()
+    open_ports = fields.Char(groups="it_infra.group_manager")
 
     server_type = fields.Selection(selection=_server_type_)
 
@@ -31,7 +31,7 @@ class Server(models.Model):
 
     internal_location = fields.Boolean(related="location_id.internal")
 
-    webadmin = fields.Char(string="Web Admin")
+    webadmin = fields.Char(string="Web Admin", groups="it_infra.group_manager")
 
     hosted_in_id = fields.Many2one(comodel_name="it_infra.server")
 
