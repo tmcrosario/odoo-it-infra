@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="device_category_printer" model="it_infra.device_category">
+        <field name="name">Impresora</field>
+    </record>
+
+    <record id="device_category_scanner" model="it_infra.device_category">
+        <field name="name">Escáner</field>
+    </record>
+</odoo>

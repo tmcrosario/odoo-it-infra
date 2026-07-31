@@ -113,7 +113,9 @@
         <field name="res_model">it_infra.device</field>
         <field name="view_mode">list,form</field>
         <field name="context">{'search_default_filter_state': True }</field>
-        <field name="domain">[(u'device_category_id', u'ilike', u'Impresora')]</field>
+        <field
+            name="domain"
+        >[('device_category_id', 'child_of', %(it_infra.device_category_printer)d)]</field>
     </record>
 
     <!-- WINDOW ACTION -->
@@ -121,6 +123,8 @@
         <field name="name">Scanners</field>
         <field name="res_model">it_infra.device</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[(u'device_category_id', u'ilike', u'Esc\xe1ner')]</field>
+        <field
+            name="domain"
+        >[('device_category_id', 'child_of', %(it_infra.device_category_scanner)d)]</field>
     </record>
 </odoo>

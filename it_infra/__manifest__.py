@@ -9,6 +9,7 @@
         "security/ir.model.access.csv",
         "data/software_category_data.xml",
         "data/software_data.xml",
+        "data/device_category_data.xml",
         "views/it_infra_menus.xml",
         "views/device_views.xml",
         "views/device_menus.xml",
