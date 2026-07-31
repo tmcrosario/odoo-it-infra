@@ -20,12 +20,13 @@ class Equipment(models.Model):
 
     @api.constrains("stock_number")
     def _check_stock_number(self):
-        if self.stock_number:
-            if len(self.stock_number) != 4:
-                return False
-        return True
+        for rec in self:
+            if rec.stock_number and len(rec.stock_number) != 4:
+                raise exceptions.ValidationError(
+                    _("Stock number must be 4 characters.")
+                )
 
-    __check_doc_number_re = re.compile(r"([0-9]{3}\-[A-z]{3}\-[0-9]{4})$")
+    __check_doc_number_re = re.compile(r"([0-9]{3}\-[A-Za-z]{3}\-[0-9]{4})$")
 
     @api.onchange("source_doc_number")
     def onchange_source_doc_number(self):
@@ -35,15 +36,16 @@ class Equipment(models.Model):
 
     @api.constrains("source_doc_number")
     def _check_doc_number(self):
-        if self.source_doc_number:
-            if not self.__check_doc_number_re.match(self.source_doc_number):
-                raise exceptions.UserError(_("Invalid document format"))
-            else:
-                tmp = self.source_doc_number.split("-")[2]
-                input_date = datetime.strptime(tmp, "%Y")
-                year_limit = datetime.today() - relativedelta(years=20)
-                if input_date < year_limit or input_date > datetime.today():
-                    raise exceptions.UserError(_("Invalid document year."))
+        for rec in self:
+            if not rec.source_doc_number:
+                continue
+            if not self.__check_doc_number_re.match(rec.source_doc_number):
+                raise exceptions.ValidationError(_("Invalid document format"))
+            tmp = rec.source_doc_number.split("-")[2]
+            input_date = datetime.strptime(tmp, "%Y")
+            year_limit = datetime.today() - relativedelta(years=20)
+            if input_date < year_limit or input_date > datetime.today():
+                raise exceptions.ValidationError(_("Invalid document year."))
 
     def action_draft(self):
         self.state = "draft"
