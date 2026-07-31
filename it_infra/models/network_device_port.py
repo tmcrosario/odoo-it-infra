@@ -27,7 +27,17 @@ class NetworkDevicePort(models.Model):
 
     inter_vlan_routing = fields.Char()
 
-    connected_to = fields.Many2one(comodel_name="it_infra.network_device")
+    # A port records whatever is plugged into it, of any equipment type
+    connected_to = fields.Reference(
+        selection=[
+            ("it_infra.computer", "Computer"),
+            ("it_infra.workstation", "Workstation"),
+            ("it_infra.server", "Server"),
+            ("it_infra.device", "Device"),
+            ("it_infra.network_device", "Network Device"),
+        ],
+        string="Connected To",
+    )
 
     cable_color = fields.Selection(selection=_cable_colors_)
 

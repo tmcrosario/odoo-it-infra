@@ -1,6 +1,6 @@
 {
     "name": "IT Infrastructure",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "author": "Lisandro Gallo",
     "license": "AGPL-3",
     "depends": ["base"],
