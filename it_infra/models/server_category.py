@@ -9,8 +9,9 @@ class ServerCategory(models.Model):
 
     server_ids = fields.Many2many(
         comodel_name="it_infra.server",
-        relation="category_ids",
-        column1="server_category_rel",
+        relation="server_category_rel",
+        column1="it_infra_server_category_id",
+        column2="it_infra_server_id",
         string="Servers",
     )
 
