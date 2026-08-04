@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Support records first so equipment below can reference them. -->
+    <record id="demo_loc_dc" model="it_infra.location">
+        <field name="name">Sala de Servidores</field>
+        <field name="internal" eval="True" />
+    </record>
+
+    <record id="demo_loc_cloud" model="it_infra.location">
+        <field name="name">Nube Externa</field>
+    </record>
+
+    <record id="demo_brand_fortinet" model="it_infra.brand">
+        <field name="name">Fortinet</field>
+    </record>
+
+    <record id="demo_brand_ubiquiti" model="it_infra.brand">
+        <field name="name">Ubiquiti</field>
+    </record>
+
+    <record id="demo_srvcat_web" model="it_infra.server_category">
+        <field name="name">Sitio Web</field>
+    </record>
+
+    <record id="demo_srvcat_backup" model="it_infra.server_category">
+        <field name="name">Respaldos</field>
+    </record>
+
+    <record id="demo_supcat_toner" model="it_infra.supply_category">
+        <field name="name">Tóners</field>
+    </record>
+
+    <!-- Workstations (stock_number must be exactly 4 chars). -->
+    <record id="demo_ws_pc01" model="it_infra.workstation">
+        <field name="name">PC-01 Mesa de Entradas</field>
+        <field name="username">aquijano</field>
+        <field name="os_id" ref="software_windows_7_64" />
+        <field name="office_suite_id" ref="software_office_2007_64" />
+        <field name="ip_address">10.50.0.11</field>
+        <field name="hostname">pc-01</field>
+        <field name="stock_number">0101</field>
+        <field name="office">Mesa de Entradas</field>
+        <field name="warranty">24</field>
+        <field name="product_key">XXXXX-DEMO-11111</field>
+    </record>
+
+    <record id="demo_ws_pc02" model="it_infra.workstation">
+        <field name="name">PC-02 Contaduría</field>
+        <field name="username">spanza</field>
+        <field name="os_id" ref="software_linux_ubuntu_14_04_64" />
+        <field name="ip_address">10.50.0.12</field>
+        <field name="hostname">pc-02</field>
+        <field name="stock_number">0102</field>
+        <field name="source_doc_number">123-ABC-2021</field>
+    </record>
+
+    <record id="demo_wsm_ssd" model="it_infra.workstation_maintenance">
+        <field name="name">Reemplazo de disco por SSD</field>
+        <field name="date">2026-02-10</field>
+        <field name="workstation_id" ref="demo_ws_pc01" />
+    </record>
+
+    <!-- Servers must stay draft: unlink() blocks any non-draft server. -->
+    <record id="demo_srv_web" model="it_infra.server">
+        <field name="name">srv-web</field>
+        <field name="username">root</field>
+        <field name="os_id" ref="software_linux_ubuntu_14_04_64" />
+        <field name="location_id" ref="demo_loc_dc" />
+        <field name="server_type">vm</field>
+        <field name="ip_address">10.50.0.20</field>
+        <field name="hostname">srv-web.demo.local</field>
+        <field name="category_ids" eval="[(6, 0, [ref('demo_srvcat_web')])]" />
+        <field name="password">demo-secret</field>
+        <field name="open_ports">80,443</field>
+        <field name="state">draft</field>
+    </record>
+
+    <record id="demo_srv_backup" model="it_infra.server">
+        <field name="name">srv-backup</field>
+        <field name="username">admin</field>
+        <field name="os_id" ref="software_linux_ubuntu_14_04_64" />
+        <field name="location_id" ref="demo_loc_dc" />
+        <field name="server_type">bare_metal</field>
+        <field name="ip_address">10.50.0.21</field>
+        <field name="hostname">srv-backup.demo.local</field>
+        <field name="category_ids" eval="[(6, 0, [ref('demo_srvcat_backup')])]" />
+        <field name="state">draft</field>
+    </record>
+
+    <!-- Devices do not inherit computer, so no unique/name constraints. -->
+    <record id="demo_dev_printer" model="it_infra.device">
+        <field name="name">Impresora Brother HL-1210W (Recepción)</field>
+        <field name="device_category_id" ref="device_category_printer" />
+        <field name="ip_address">10.50.0.30</field>
+        <field name="stock_number">0301</field>
+        <field name="state">active</field>
+    </record>
+
+    <record id="demo_dev_scanner" model="it_infra.device">
+        <field name="name">Escáner Epson DS-1660W</field>
+        <field name="device_category_id" ref="device_category_scanner" />
+        <field name="stock_number">0302</field>
+        <field name="state">stored</field>
+    </record>
+
+    <!-- Network devices (username + location required). -->
+    <record id="demo_nd_switch" model="it_infra.network_device">
+        <field name="name">sw-core</field>
+        <field name="username">admin</field>
+        <field name="location_id" ref="demo_loc_dc" />
+        <field name="brand_id" ref="demo_brand_ubiquiti" />
+        <field name="network_device_type">switch</field>
+        <field name="model">UniFi Switch 24</field>
+        <field name="ip_address">10.50.0.2</field>
+        <field name="mac_address">aa:bb:cc:00:11:22</field>
+    </record>
+
+    <record id="demo_nd_fw" model="it_infra.network_device">
+        <field name="name">fw-edge</field>
+        <field name="username">admin</field>
+        <field name="location_id" ref="demo_loc_dc" />
+        <field name="brand_id" ref="demo_brand_fortinet" />
+        <field name="network_device_type">router</field>
+        <field name="model">FortiGate 60F</field>
+        <field name="ip_address">10.50.0.1</field>
+    </record>
+
+    <!-- connected_to is a Reference field: eval a 'model,id' string. -->
+    <record id="demo_ndp_gi1" model="it_infra.network_device_port">
+        <field name="name">Gi1/0/1</field>
+        <field name="network_device_id" ref="demo_nd_switch" />
+        <field name="vlan">10</field>
+        <field name="cable_color">blue</field>
+        <field name="state" eval="True" />
+        <field name="ip_address">10.50.0.11</field>
+        <field
+            name="connected_to"
+            eval="'it_infra.workstation,%d' % ref('demo_ws_pc01')"
+        />
+    </record>
+
+    <!-- Supplies + provider. -->
+    <record id="demo_sup_toner" model="it_infra.supply">
+        <field name="name">Tóner Brother TN-1060</field>
+        <field name="quantity">5</field>
+        <field name="supply_category_id" ref="demo_supcat_toner" />
+        <field name="device_ids" eval="[(6, 0, [ref('demo_dev_printer')])]" />
+        <field name="partner_id" ref="base.main_partner" />
+    </record>
+
+    <record id="demo_sup_pendrive" model="it_infra.supply">
+        <field name="name">Pendrive Kingston 32GB</field>
+        <field name="quantity">3</field>
+        <field name="is_pendrive" eval="True" />
+        <field name="user_id" ref="base.user_admin" />
+        <field name="loan_date">2026-06-01</field>
+    </record>
+
+    <record id="demo_prov_isp" model="it_infra.provider">
+        <field name="name">ISP Demo S.A.</field>
+        <field name="contact">soporte@ispdemo.test</field>
+        <field name="ip_address">200.0.0.1</field>
+        <field name="netmask">/30</field>
+        <field name="gateway">200.0.0.2</field>
+        <field name="dns_server_1">8.8.8.8</field>
+        <field name="dns_server_2">1.1.1.1</field>
+    </record>
+</odoo>

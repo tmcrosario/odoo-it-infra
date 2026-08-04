@@ -1,6 +1,6 @@
 {
     "name": "IT Infrastructure",
-    "version": "19.0.1.0.1",
+    "version": "19.0.1.0.2",
     "author": "Lisandro Gallo",
     "license": "AGPL-3",
     "depends": ["base"],
@@ -40,5 +40,5 @@
     "installable": True,
     "auto_install": False,
     "application": True,
-    "demo": [],
+    "demo": ["demo/it_infra_demo.xml"],
 }  # yapf: disable
