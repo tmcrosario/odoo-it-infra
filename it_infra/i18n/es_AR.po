@@ -4,39 +4,43 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0-20220727\n"
+"Project-Id-Version: Odoo Server 19.0-20260630\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-05 15:16+0000\n"
-"PO-Revision-Date: 2022-08-05 12:32-0300\n"
+"POT-Creation-Date: 2026-08-05 16:04+0000\n"
+"PO-Revision-Date: 2026-08-05 16:04+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: es_AR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.1.1\n"
+
+#. module: it_infra
+#. odoo-python
+#: code:addons/it_infra/models/server.py:0
+msgid "%s"
+msgstr "%s"
 
 #. module: it_infra
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_software__architecture__(x86)
 msgid "32 bits"
-msgstr ""
+msgstr "32 bits"
 
 #. module: it_infra
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_software__architecture__(x64)
 msgid "64 bits"
-msgstr ""
+msgstr "64 bits"
 
 #. module: it_infra
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_network_device__network_device_type__ap
 msgid "Access Point"
-msgstr ""
+msgstr "Punto de acceso"
 
 #. module: it_infra
 #: model:ir.actions.act_window,name:it_infra.network_device_access_point_action_view_form
 #: model:ir.ui.menu,name:it_infra.network_device_access_point_menu
 msgid "Access Points"
-msgstr ""
+msgstr "Puntos de acceso"
 
 #. module: it_infra
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_network_device_port__state
@@ -46,7 +50,14 @@ msgstr ""
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_network_device__state__active
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_server__state__active
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_workstation__state__active
+#: model_terms:ir.ui.view,arch_db:it_infra.device_view_search
 msgid "Active"
+msgstr "Activo"
+
+#. module: it_infra
+#: model_terms:ir.ui.view,arch_db:it_infra.server_view_search
+#: model_terms:ir.ui.view,arch_db:it_infra.workstation_view_search
+msgid "Activo"
 msgstr "Activo"
 
 #. module: it_infra
@@ -62,12 +73,12 @@ msgstr "Bienes de Uso"
 #. module: it_infra
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_server__server_type__bare_metal
 msgid "Bare Metal"
-msgstr ""
+msgstr "Bare Metal"
 
 #. module: it_infra
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_server__server_type__bare_metal_sa
 msgid "Bare Metal (Standalone)"
-msgstr ""
+msgstr "Bare Metal (Standalone)"
 
 #. module: it_infra
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_network_device_port__cable_color__black
@@ -110,15 +121,16 @@ msgstr "Categoría"
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_software_category__child_ids
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_supply_category__child_ids
 msgid "Childs"
-msgstr ""
+msgstr "Hijos"
 
 #. module: it_infra
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_server__server_type__cloud
 msgid "Cloud"
-msgstr ""
+msgstr "Cloud"
 
 #. module: it_infra
 #: model:ir.model,name:it_infra.model_it_infra_computer
+#: model:ir.model.fields.selection,name:it_infra.selection__it_infra_network_device_port__connected_to__it_infra_computer
 msgid "Computer"
 msgstr "Computadora"
 
@@ -243,6 +255,7 @@ msgstr "Descripción"
 
 #. module: it_infra
 #: model:ir.model,name:it_infra.model_it_infra_device
+#: model:ir.model.fields.selection,name:it_infra.selection__it_infra_network_device_port__connected_to__it_infra_device
 msgid "Device"
 msgstr "Dispositivo"
 
@@ -299,7 +312,7 @@ msgstr "DNS 2"
 #. module: it_infra
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_server__server_type__docker
 msgid "Docker Stack"
-msgstr ""
+msgstr "Docker Stack"
 
 #. module: it_infra
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_computer__state__draft
@@ -339,7 +352,7 @@ msgstr "Formato: XXXX (Por ejemplo: 1234)"
 #. module: it_infra
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_provider__gateway
 msgid "Gateway"
-msgstr ""
+msgstr "Gateway"
 
 #. module: it_infra
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_network_device_port__cable_color__gray
@@ -350,14 +363,14 @@ msgstr "Gris"
 #: model_terms:ir.ui.view,arch_db:it_infra.server_view_form
 #: model_terms:ir.ui.view,arch_db:it_infra.workstation_view_form
 msgid "Hardware"
-msgstr ""
+msgstr "Hardware"
 
 #. module: it_infra
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_computer__hardware_data
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_server__hardware_data
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_workstation__hardware_data
 msgid "Hardware Data"
-msgstr ""
+msgstr "Datos de hardware"
 
 #. module: it_infra
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_server__hosted_in_id
@@ -387,7 +400,7 @@ msgstr "Nombre de Host"
 #. module: it_infra
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_server__server_type__hypervisor
 msgid "Hypervisor"
-msgstr ""
+msgstr "Hypervisor"
 
 #. module: it_infra
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_brand__id
@@ -409,9 +422,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_workstation__id
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_workstation_maintenance__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: it_infra
+#: model:ir.module.category,name:it_infra.module_category_it_infra
+#: model:res.groups.privilege,name:it_infra.res_groups_privilege_it_infra
+msgid "IT Infra"
+msgstr "IT Infra"
+
+#. module: it_infra
+#: model:ir.module.category,description:it_infra.module_category_it_infra
 #: model:ir.ui.menu,name:it_infra.root_menu
 msgid "IT Infrastructure"
 msgstr "Infraestructura IT"
@@ -428,14 +448,14 @@ msgid "Internal"
 msgstr "Interno"
 
 #. module: it_infra
+#. odoo-python
 #: code:addons/it_infra/models/equipment.py:0
-#, python-format
 msgid "Invalid document format"
 msgstr "Formato de documento inválido"
 
 #. module: it_infra
+#. odoo-python
 #: code:addons/it_infra/models/equipment.py:0
-#, python-format
 msgid "Invalid document year."
 msgstr "Año de documento inválido."
 
@@ -462,28 +482,6 @@ msgstr "Dirección IP"
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_supply__is_pendrive
 msgid "Is Pendrive"
 msgstr "Pendrive"
-
-#. module: it_infra
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_brand____last_update
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_category____last_update
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_computer____last_update
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_device____last_update
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_device_category____last_update
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_equipment____last_update
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_location____last_update
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_network_device____last_update
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_network_device_port____last_update
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_provider____last_update
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_server____last_update
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_server_category____last_update
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_software____last_update
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_software_category____last_update
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_supply____last_update
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_supply_category____last_update
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_workstation____last_update
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_workstation_maintenance____last_update
-msgid "Last Modified on"
-msgstr "Última Modifiación en"
 
 #. module: it_infra
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_brand__write_uid
@@ -624,6 +622,7 @@ msgstr "Red"
 #. module: it_infra
 #: model:ir.model,name:it_infra.model_it_infra_network_device
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_network_device_port__network_device_id
+#: model:ir.model.fields.selection,name:it_infra.selection__it_infra_network_device_port__connected_to__it_infra_network_device
 msgid "Network Device"
 msgstr "Dispositivo de Red"
 
@@ -688,8 +687,8 @@ msgid "Password"
 msgstr "Contraseña"
 
 #. module: it_infra
+#. odoo-python
 #: code:addons/it_infra/models/server.py:0
-#, python-format
 msgid "Password for user '%s':"
 msgstr "Contraseña del usuario '%s':"
 
@@ -697,7 +696,7 @@ msgstr "Contraseña del usuario '%s':"
 #: model:ir.actions.act_window,name:it_infra.supply_pendrive_action_view_form
 #: model:ir.ui.menu,name:it_infra.supply_pendrive_menu
 msgid "Pendrives"
-msgstr ""
+msgstr "Pendrives"
 
 #. module: it_infra
 #: model_terms:ir.ui.view,arch_db:it_infra.network_device_view_form
@@ -745,13 +744,13 @@ msgstr "Cantidad"
 #. module: it_infra
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_network_device__network_device_type__router
 msgid "Router"
-msgstr ""
+msgstr "Router"
 
 #. module: it_infra
 #: model:ir.actions.act_window,name:it_infra.network_device_router_action_view_form
 #: model:ir.ui.menu,name:it_infra.network_device_router_menu
 msgid "Routers"
-msgstr ""
+msgstr "Routers"
 
 #. module: it_infra
 #: model:ir.actions.act_window,name:it_infra.device_scanner_action_view_form
@@ -761,6 +760,7 @@ msgstr "Escáners"
 
 #. module: it_infra
 #: model:ir.model,name:it_infra.model_it_infra_server
+#: model:ir.model.fields.selection,name:it_infra.selection__it_infra_network_device_port__connected_to__it_infra_server
 msgid "Server"
 msgstr "Servidor"
 
@@ -802,7 +802,7 @@ msgstr "Servidores"
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_software_category__software_ids
 #: model:ir.ui.menu,name:it_infra.software_category_menu
 msgid "Software"
-msgstr ""
+msgstr "Software"
 
 #. module: it_infra
 #: model:ir.actions.act_window,name:it_infra.software_category_action_view_form
@@ -851,6 +851,12 @@ msgid "Stock Number"
 msgstr "Nº de Inventario"
 
 #. module: it_infra
+#. odoo-python
+#: code:addons/it_infra/models/equipment.py:0
+msgid "Stock number must be 4 characters."
+msgstr "El número de stock debe tener 4 caracteres."
+
+#. module: it_infra
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_computer__state__stored
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_device__state__stored
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_equipment__state__stored
@@ -865,7 +871,6 @@ msgstr "Almacenado"
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_device__supply_ids
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_supply_category__supply_ids
 #: model:ir.ui.menu,name:it_infra.supply_category_menu
-#: model:ir.ui.menu,name:it_infra.supply_configuration_menu
 #: model:ir.ui.menu,name:it_infra.supply_menu
 #: model_terms:ir.ui.view,arch_db:it_infra.device_view_form
 msgid "Supplies"
@@ -889,13 +894,13 @@ msgstr "Categoría"
 #. module: it_infra
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_network_device__network_device_type__switch
 msgid "Switch"
-msgstr ""
+msgstr "Switch"
 
 #. module: it_infra
 #: model:ir.actions.act_window,name:it_infra.network_device_switch_action_view_form
 #: model:ir.ui.menu,name:it_infra.network_device_switche_menu
 msgid "Switches"
-msgstr ""
+msgstr "Switches"
 
 #. module: it_infra
 #: model_terms:ir.ui.view,arch_db:it_infra.server_view_form
@@ -953,7 +958,7 @@ msgstr "Garantía (meses)"
 #. module: it_infra
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_server__webadmin
 msgid "Web Admin"
-msgstr ""
+msgstr "Administración web"
 
 #. module: it_infra
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_network_device_port__cable_color__white
@@ -963,6 +968,7 @@ msgstr "Blanco"
 #. module: it_infra
 #: model:ir.model,name:it_infra.model_it_infra_workstation
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_workstation_maintenance__workstation_id
+#: model:ir.model.fields.selection,name:it_infra.selection__it_infra_network_device_port__connected_to__it_infra_workstation
 msgid "Workstation"
 msgstr "Puesto de Trabajo"
 
@@ -984,14 +990,10 @@ msgid "Yellow"
 msgstr "Amarillo"
 
 #. module: it_infra
+#. odoo-python
 #: code:addons/it_infra/models/server.py:0
-#, python-format
-msgid ""
-"You cannot delete a server                     which is not draft or "
-"cancelled."
-msgstr ""
-"No se puede borrar un servidor                     cuyo estado no sea "
-"borrador o cancelado."
+msgid "You cannot delete a server which is not in draft state."
+msgstr "No se puede eliminar un servidor que no esté en estado borrador."
 
 #. module: it_infra
 #: model_terms:ir.ui.view,arch_db:it_infra.device_view_form
