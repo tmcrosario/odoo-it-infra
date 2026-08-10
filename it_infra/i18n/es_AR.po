@@ -681,18 +681,6 @@ msgid "Parent"
 msgstr "Padre"
 
 #. module: it_infra
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_network_device__password
-#: model:ir.model.fields,field_description:it_infra.field_it_infra_server__password
-msgid "Password"
-msgstr "Contraseña"
-
-#. module: it_infra
-#. odoo-python
-#: code:addons/it_infra/models/server.py:0
-msgid "Password for user '%s':"
-msgstr "Contraseña del usuario '%s':"
-
-#. module: it_infra
 #: model:ir.actions.act_window,name:it_infra.supply_pendrive_action_view_form
 #: model:ir.ui.menu,name:it_infra.supply_pendrive_menu
 msgid "Pendrives"
@@ -929,11 +917,6 @@ msgstr "Nombre de usuario"
 #: model:ir.model.fields,field_description:it_infra.field_it_infra_software__version
 msgid "Version"
 msgstr "Versión"
-
-#. module: it_infra
-#: model_terms:ir.ui.view,arch_db:it_infra.server_view_form
-msgid "View Password"
-msgstr "Ver Contraseña"
 
 #. module: it_infra
 #: model:ir.model.fields.selection,name:it_infra.selection__it_infra_server__server_type__vm

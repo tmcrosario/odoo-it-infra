@@ -15,8 +15,6 @@ class Server(models.Model):
         ("docker", "Docker Stack"),
     ]
 
-    password = fields.Char(groups="it_infra.group_manager")
-
     open_ports = fields.Char(groups="it_infra.group_manager")
 
     server_type = fields.Selection(selection=_server_type_)
@@ -50,11 +48,3 @@ class Server(models.Model):
                     _("You cannot delete a server which is not in draft state.")
                 )
         return super().unlink()
-
-    def show_passwd(self):
-        for server in self:
-            raise exceptions.UserError(
-                _("Password for user '%s':") % server.username
-                + "\n"
-                + _("%s") % server.password
-            )

@@ -70,7 +70,6 @@
         <field name="ip_address">10.50.0.20</field>
         <field name="hostname">srv-web.demo.local</field>
         <field name="category_ids" eval="[(6, 0, [ref('demo_srvcat_web')])]" />
-        <field name="password">demo-secret</field>
         <field name="open_ports">80,443</field>
         <field name="state">draft</field>
     </record>
@@ -103,10 +102,9 @@
         <field name="state">stored</field>
     </record>
 
-    <!-- Network devices (username + location required). -->
+    <!-- Network devices (location required). -->
     <record id="demo_nd_switch" model="it_infra.network_device">
         <field name="name">sw-core</field>
-        <field name="username">admin</field>
         <field name="location_id" ref="demo_loc_dc" />
         <field name="brand_id" ref="demo_brand_ubiquiti" />
         <field name="network_device_type">switch</field>
@@ -117,7 +115,6 @@
 
     <record id="demo_nd_fw" model="it_infra.network_device">
         <field name="name">fw-edge</field>
-        <field name="username">admin</field>
         <field name="location_id" ref="demo_loc_dc" />
         <field name="brand_id" ref="demo_brand_fortinet" />
         <field name="network_device_type">router</field>
@@ -164,5 +161,410 @@
         <field name="gateway">200.0.0.2</field>
         <field name="dns_server_1">8.8.8.8</field>
         <field name="dns_server_2">1.1.1.1</field>
+    </record>
+
+    <!-- ============================================================ -->
+    <!-- Expanded municipal IT inventory demo (all data is fictional) -->
+    <!-- ============================================================ -->
+
+    <!-- Extra support records referenced by the equipment below. -->
+    <record id="demo_loc_office" model="it_infra.location">
+        <field name="name">Oficinas Planta Baja</field>
+        <field name="internal" eval="True" />
+    </record>
+
+    <record id="demo_loc_rack" model="it_infra.location">
+        <field name="name">Rack de Comunicaciones</field>
+        <field name="internal" eval="True" />
+    </record>
+
+    <record id="demo_brand_tplink" model="it_infra.brand">
+        <field name="name">TP-Link</field>
+    </record>
+
+    <record id="demo_brand_mikrotik" model="it_infra.brand">
+        <field name="name">MikroTik</field>
+    </record>
+
+    <!-- Server category names must be unique (SQL constraint). -->
+    <record id="demo_srvcat_db" model="it_infra.server_category">
+        <field name="name">Base de Datos</field>
+    </record>
+
+    <record id="demo_srvcat_app" model="it_infra.server_category">
+        <field name="name">Aplicaciones</field>
+    </record>
+
+    <record id="demo_devcat_ups" model="it_infra.device_category">
+        <field name="name">UPS</field>
+    </record>
+
+    <record id="demo_devcat_phone" model="it_infra.device_category">
+        <field name="name">Teléfono IP</field>
+    </record>
+
+    <record id="demo_devcat_projector" model="it_infra.device_category">
+        <field name="name">Proyector</field>
+    </record>
+
+    <record id="demo_supcat_paper" model="it_infra.supply_category">
+        <field name="name">Papelería</field>
+    </record>
+
+    <record id="demo_supcat_peripheral" model="it_infra.supply_category">
+        <field name="name">Periféricos</field>
+    </record>
+
+    <record id="demo_supcat_cabling" model="it_infra.supply_category">
+        <field name="name">Cableado</field>
+    </record>
+
+    <!-- Workstations: stock_number exactly 4 chars; name/ip/hostname unique. -->
+    <record id="demo_ws_pc03" model="it_infra.workstation">
+        <field name="name">PC-03 Tesorería</field>
+        <field name="username">dtoboso</field>
+        <field name="os_id" ref="software_windows_7_32" />
+        <field name="office_suite_id" ref="software_office_2003_32" />
+        <field name="ip_address">10.50.0.13</field>
+        <field name="hostname">pc-03</field>
+        <field name="stock_number">0103</field>
+        <field name="office">Tesorería</field>
+        <field name="warranty">36</field>
+        <field name="product_key">XXXXX-DEMO-33333</field>
+    </record>
+
+    <record id="demo_ws_pc04" model="it_infra.workstation">
+        <field name="name">PC-04 Sistemas</field>
+        <field name="username">scarrasco</field>
+        <field name="os_id" ref="software_linux_ubuntu_14_04_64" />
+        <field name="ip_address">10.50.0.14</field>
+        <field name="hostname">pc-04</field>
+        <field name="stock_number">0104</field>
+        <field name="office">Sistemas</field>
+        <field name="source_doc_number">456-DEF-2022</field>
+    </record>
+
+    <record id="demo_ws_pc05" model="it_infra.workstation">
+        <field name="name">PC-05 Auditoría</field>
+        <field name="username">pperez</field>
+        <field name="os_id" ref="software_windows_7_64" />
+        <field name="office_suite_id" ref="software_office_2007_64" />
+        <field name="ip_address">10.50.0.15</field>
+        <field name="hostname">pc-05</field>
+        <field name="stock_number">0105</field>
+        <field name="office">Auditoría</field>
+        <field name="state">active</field>
+    </record>
+
+    <record id="demo_ws_pc06" model="it_infra.workstation">
+        <field name="name">PC-06 Recepción</field>
+        <field name="username">mnicolas</field>
+        <field name="os_id" ref="software_linux_ubuntu_12_04_64" />
+        <field name="ip_address">10.50.0.16</field>
+        <field name="hostname">pc-06</field>
+        <field name="stock_number">0106</field>
+        <field name="office">Recepción</field>
+        <field name="state">active</field>
+    </record>
+
+    <record id="demo_ws_pc07" model="it_infra.workstation">
+        <field name="name">PC-07 Depósito (en resguardo)</field>
+        <field name="username">gpasamonte</field>
+        <field name="os_id" ref="software_windows_xp_sp3_32" />
+        <field name="ip_address">10.50.0.17</field>
+        <field name="hostname">pc-07</field>
+        <field name="stock_number">0107</field>
+        <field name="state">stored</field>
+    </record>
+
+    <!-- Extra maintenance history for the new workstations. -->
+    <record id="demo_wsm_ram" model="it_infra.workstation_maintenance">
+        <field name="name">Ampliación de memoria RAM a 8GB</field>
+        <field name="date">2026-03-05</field>
+        <field name="workstation_id" ref="demo_ws_pc03" />
+    </record>
+
+    <record id="demo_wsm_format" model="it_infra.workstation_maintenance">
+        <field name="name">Formateo y reinstalación del sistema</field>
+        <field name="date">2026-04-18</field>
+        <field name="workstation_id" ref="demo_ws_pc04" />
+    </record>
+
+    <!-- New servers MUST stay draft: unlink() blocks non-draft servers. -->
+    <record id="demo_srv_db" model="it_infra.server">
+        <field name="name">srv-db</field>
+        <field name="username">postgres</field>
+        <field name="os_id" ref="software_linux_ubuntu_14_04_64" />
+        <field name="location_id" ref="demo_loc_dc" />
+        <field name="server_type">bare_metal</field>
+        <field name="ip_address">10.50.0.22</field>
+        <field name="hostname">srv-db.demo.local</field>
+        <field name="stock_number">0201</field>
+        <field name="category_ids" eval="[(6, 0, [ref('demo_srvcat_db')])]" />
+        <field name="open_ports">5432</field>
+        <field name="state">draft</field>
+    </record>
+
+    <record id="demo_srv_app" model="it_infra.server">
+        <field name="name">srv-app</field>
+        <field name="username">deploy</field>
+        <field name="os_id" ref="software_linux_ubuntu_12_04_64" />
+        <field name="location_id" ref="demo_loc_dc" />
+        <field name="server_type">docker</field>
+        <field name="ip_address">10.50.0.23</field>
+        <field name="hostname">srv-app.demo.local</field>
+        <field name="stock_number">0202</field>
+        <field name="category_ids" eval="[(6, 0, [ref('demo_srvcat_app')])]" />
+        <field name="webadmin">https://srv-app.demo.local:9443</field>
+        <field name="open_ports">8069,8072</field>
+        <field name="state">draft</field>
+    </record>
+
+    <record id="demo_srv_hyper" model="it_infra.server">
+        <field name="name">srv-hyper</field>
+        <field name="username">root</field>
+        <field name="os_id" ref="software_linux_ubuntu_14_04_64" />
+        <field name="location_id" ref="demo_loc_dc" />
+        <field name="server_type">hypervisor</field>
+        <field name="ip_address">10.50.0.24</field>
+        <field name="hostname">srv-hyper.demo.local</field>
+        <field name="stock_number">0203</field>
+        <field name="state">draft</field>
+    </record>
+
+    <!-- VM hosted on the hypervisor above (hosted_in_id self-reference). -->
+    <record id="demo_srv_files" model="it_infra.server">
+        <field name="name">srv-files</field>
+        <field name="username">admin</field>
+        <field name="os_id" ref="software_linux_ubuntu_14_04_64" />
+        <field name="location_id" ref="demo_loc_dc" />
+        <field name="server_type">vm</field>
+        <field name="hosted_in_id" ref="demo_srv_hyper" />
+        <field name="ip_address">10.50.0.25</field>
+        <field name="hostname">srv-files.demo.local</field>
+        <field name="stock_number">0204</field>
+        <field name="category_ids" eval="[(6, 0, [ref('demo_srvcat_backup')])]" />
+        <field name="state">draft</field>
+    </record>
+
+    <record id="demo_srv_cloud" model="it_infra.server">
+        <field name="name">srv-cloud</field>
+        <field name="username">ubuntu</field>
+        <field name="os_id" ref="software_linux_ubuntu_14_04_64" />
+        <field name="location_id" ref="demo_loc_cloud" />
+        <field name="server_type">cloud</field>
+        <field name="ip_address">190.2.3.4</field>
+        <field name="hostname">srv-cloud.demo.local</field>
+        <field name="stock_number">0205</field>
+        <field name="category_ids" eval="[(6, 0, [ref('demo_srvcat_web')])]" />
+        <field name="state">draft</field>
+    </record>
+
+    <!-- Devices need a device_category_id; no unique/name constraints. -->
+    <record id="demo_dev_ups" model="it_infra.device">
+        <field name="name">UPS APC Back-UPS 1500</field>
+        <field name="device_category_id" ref="demo_devcat_ups" />
+        <field name="stock_number">0303</field>
+        <field name="office">Sala de Servidores</field>
+        <field name="state">active</field>
+    </record>
+
+    <record id="demo_dev_phone1" model="it_infra.device">
+        <field name="name">Teléfono IP Grandstream GXP1625 (Mesa de Entradas)</field>
+        <field name="device_category_id" ref="demo_devcat_phone" />
+        <field name="ip_address">10.50.0.31</field>
+        <field name="stock_number">0304</field>
+        <field name="state">active</field>
+    </record>
+
+    <record id="demo_dev_phone2" model="it_infra.device">
+        <field name="name">Teléfono IP Grandstream GXP1625 (Contaduría)</field>
+        <field name="device_category_id" ref="demo_devcat_phone" />
+        <field name="ip_address">10.50.0.32</field>
+        <field name="stock_number">0305</field>
+        <field name="state">decommissioned</field>
+    </record>
+
+    <record id="demo_dev_projector" model="it_infra.device">
+        <field name="name">Proyector Epson PowerLite E20 (Sala de Reuniones)</field>
+        <field name="device_category_id" ref="demo_devcat_projector" />
+        <field name="stock_number">0306</field>
+        <field name="state">stored</field>
+    </record>
+
+    <record id="demo_dev_printer2" model="it_infra.device">
+        <field name="name">Impresora Multifunción HP LaserJet M428 (Contaduría)</field>
+        <field name="device_category_id" ref="device_category_printer" />
+        <field name="ip_address">10.50.0.33</field>
+        <field name="stock_number">0307</field>
+        <field name="state">active</field>
+    </record>
+
+    <!-- Network devices require username AND location_id. -->
+    <record id="demo_nd_ap1" model="it_infra.network_device">
+        <field name="name">ap-pb-01</field>
+        <field name="location_id" ref="demo_loc_office" />
+        <field name="brand_id" ref="demo_brand_ubiquiti" />
+        <field name="network_device_type">ap</field>
+        <field name="model">UniFi AP AC Pro</field>
+        <field name="ip_address">10.50.0.3</field>
+        <field name="mac_address">aa:bb:cc:00:aa:01</field>
+        <field name="stock_number">0401</field>
+    </record>
+
+    <record id="demo_nd_ap2" model="it_infra.network_device">
+        <field name="name">ap-pb-02</field>
+        <field name="location_id" ref="demo_loc_office" />
+        <field name="brand_id" ref="demo_brand_tplink" />
+        <field name="network_device_type">ap</field>
+        <field name="model">EAP225</field>
+        <field name="ip_address">10.50.0.4</field>
+        <field name="mac_address">aa:bb:cc:00:aa:02</field>
+        <field name="stock_number">0402</field>
+    </record>
+
+    <record id="demo_nd_switch2" model="it_infra.network_device">
+        <field name="name">sw-access-1</field>
+        <field name="location_id" ref="demo_loc_rack" />
+        <field name="brand_id" ref="demo_brand_ubiquiti" />
+        <field name="network_device_type">switch</field>
+        <field name="model">UniFi Switch 8</field>
+        <field name="ip_address">10.50.0.5</field>
+        <field name="mac_address">aa:bb:cc:00:bb:01</field>
+        <field name="stock_number">0403</field>
+    </record>
+
+    <record id="demo_nd_router2" model="it_infra.network_device">
+        <field name="name">rt-branch</field>
+        <field name="location_id" ref="demo_loc_rack" />
+        <field name="brand_id" ref="demo_brand_mikrotik" />
+        <field name="network_device_type">router</field>
+        <field name="model">hEX RB750Gr3</field>
+        <field name="ip_address">10.50.0.6</field>
+        <field name="stock_number">0404</field>
+    </record>
+
+    <!-- connected_to is a Reference field: eval a 'model,id' string. -->
+    <record id="demo_ndp_gi2" model="it_infra.network_device_port">
+        <field name="name">Gi1/0/2</field>
+        <field name="network_device_id" ref="demo_nd_switch" />
+        <field name="vlan">20</field>
+        <field name="cable_color">yellow</field>
+        <field name="state" eval="True" />
+        <field name="ip_address">10.50.0.20</field>
+        <field name="connected_to" eval="'it_infra.server,%d' % ref('demo_srv_web')" />
+    </record>
+
+    <record id="demo_ndp_gi3" model="it_infra.network_device_port">
+        <field name="name">Gi1/0/3</field>
+        <field name="network_device_id" ref="demo_nd_switch2" />
+        <field name="vlan">30</field>
+        <field name="cable_color">white</field>
+        <field name="state" eval="True" />
+        <field name="ip_address">10.50.0.31</field>
+        <field
+            name="connected_to"
+            eval="'it_infra.device,%d' % ref('demo_dev_phone1')"
+        />
+    </record>
+
+    <record id="demo_ndp_uplink" model="it_infra.network_device_port">
+        <field name="name">Gi1/0/24 (uplink)</field>
+        <field name="network_device_id" ref="demo_nd_switch" />
+        <field name="vlan">1</field>
+        <field name="cable_color">gray</field>
+        <field name="state" eval="True" />
+        <field
+            name="connected_to"
+            eval="'it_infra.network_device,%d' % ref('demo_nd_fw')"
+        />
+    </record>
+
+    <!-- Supplies + more categories/providers. -->
+    <record id="demo_sup_toner_hp" model="it_infra.supply">
+        <field name="name">Tóner HP 85A (CE285A)</field>
+        <field name="quantity">4</field>
+        <field name="supply_category_id" ref="demo_supcat_toner" />
+        <field name="device_ids" eval="[(6, 0, [ref('demo_dev_printer2')])]" />
+        <field name="partner_id" ref="base.main_partner" />
+    </record>
+
+    <record id="demo_sup_paper" model="it_infra.supply">
+        <field name="name">Resma de papel A4 75g</field>
+        <field name="quantity">50</field>
+        <field name="supply_category_id" ref="demo_supcat_paper" />
+        <field name="partner_id" ref="base.main_partner" />
+    </record>
+
+    <record id="demo_sup_mouse" model="it_infra.supply">
+        <field name="name">Mouse óptico USB</field>
+        <field name="quantity">20</field>
+        <field name="supply_category_id" ref="demo_supcat_peripheral" />
+    </record>
+
+    <record id="demo_sup_cable" model="it_infra.supply">
+        <field name="name">Cable UTP Cat6 (rollo 305m)</field>
+        <field name="quantity">2</field>
+        <field name="supply_category_id" ref="demo_supcat_cabling" />
+    </record>
+
+    <record id="demo_sup_pendrive2" model="it_infra.supply">
+        <field name="name">Pendrive SanDisk 64GB</field>
+        <field name="quantity">2</field>
+        <field name="is_pendrive" eval="True" />
+        <field name="supply_category_id" ref="demo_supcat_peripheral" />
+        <field name="user_id" ref="base.user_admin" />
+        <field name="loan_date">2026-05-20</field>
+    </record>
+
+    <record id="demo_prov_insumos" model="it_infra.provider">
+        <field name="name">Insumos Demo S.R.L.</field>
+        <field name="membership_number">DEMO-0001</field>
+        <field name="contact">ventas@insumosdemo.test</field>
+    </record>
+
+    <record id="demo_prov_isp_backup" model="it_infra.provider">
+        <field name="name">Enlace Backup S.A.</field>
+        <field name="contact">noc@enlacebackup.test</field>
+        <field name="ip_address">190.0.0.1</field>
+        <field name="netmask">/30</field>
+        <field name="gateway">190.0.0.2</field>
+        <field name="dns_server_1">9.9.9.9</field>
+        <field name="dns_server_2">1.0.0.1</field>
+    </record>
+
+    <!-- Base computer/equipment records (own tables; simple demo). -->
+    <record id="demo_cmp_kiosk" model="it_infra.computer">
+        <field name="name">Kiosco de Consultas</field>
+        <field name="username">rguinart</field>
+        <field name="os_id" ref="software_linux_ubuntu_14_04_64" />
+        <field name="ip_address">10.60.0.10</field>
+        <field name="hostname">cmp-kiosk</field>
+        <field name="stock_number">0501</field>
+        <field name="state">active</field>
+    </record>
+
+    <record id="demo_cmp_lab" model="it_infra.computer">
+        <field name="name">Equipo de Laboratorio de Redes</field>
+        <field name="username">cbenengeli</field>
+        <field name="os_id" ref="software_linux_debian_wheezy_64" />
+        <field name="ip_address">10.60.0.11</field>
+        <field name="hostname">cmp-lab</field>
+        <field name="stock_number">0502</field>
+        <field name="state">stored</field>
+    </record>
+
+    <record id="demo_eq_pdu" model="it_infra.equipment">
+        <field name="name">PDU Rack Sala de Servidores</field>
+        <field name="stock_number">0601</field>
+        <field name="office">Sala de Servidores</field>
+        <field name="state">active</field>
+    </record>
+
+    <record id="demo_eq_kvm" model="it_infra.equipment">
+        <field name="name">Switch KVM 8 puertos</field>
+        <field name="stock_number">0602</field>
+        <field name="office">Sala de Servidores</field>
+        <field name="state">stored</field>
     </record>
 </odoo>
