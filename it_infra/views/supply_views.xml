@@ -41,7 +41,7 @@
                         </group>
                         <group invisible="not is_pendrive">
                             <field name="user_id" />
-                            <field name="loan_date" />
+                            <field name="loan_date" options="{'numeric': True}" />
                         </group>
                     </group>
                     <notebook invisible="is_pendrive">
@@ -76,7 +76,7 @@
             <list>
                 <field name="name" />
                 <field name="description" />
-                <field name="loan_date" />
+                <field name="loan_date" options="{'numeric': True}" />
                 <field name="user_id" />
             </list>
         </field>
