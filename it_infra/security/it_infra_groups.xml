@@ -20,5 +20,6 @@
         <field name="name">Manager</field>
         <field name="implied_ids" eval="[(4,ref('group_user'))]" />
         <field name="privilege_id" ref="res_groups_privilege_it_infra" />
+        <field name="user_ids" eval="[(4, ref('base.user_admin'))]" />
     </record>
 </odoo>
