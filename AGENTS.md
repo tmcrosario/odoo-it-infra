@@ -1,4 +1,4 @@
-# Claude Instructions for `odoo-it-infra`
+# Agent conventions for `odoo-it-infra`
 
 TMC Odoo 19.0 addon repository.
 
