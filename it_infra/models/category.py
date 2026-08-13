@@ -14,6 +14,6 @@ class Category(models.Model):
         # intentionally not part of @api.depends here.
         for cat in self:
             if "parent_id" in cat._fields and cat.parent_id:
-                cat.display_name = "%s / %s" % (cat.parent_id.display_name, cat.name)
+                cat.display_name = f"{cat.parent_id.display_name} / {cat.name}"
             else:
                 cat.display_name = cat.name

@@ -1,4 +1,4 @@
-from odoo import _, exceptions, fields, models
+from odoo import exceptions, fields, models
 
 
 class Server(models.Model):
@@ -44,7 +44,11 @@ class Server(models.Model):
         # loop used to delete the rest without checking their state
         for server in self:
             if server.state != "draft":
+                # Business rule: block deleting a server not in draft state.
+                # pylint: disable=no-raise-unlink
                 raise exceptions.UserError(
-                    _("You cannot delete a server which is not in draft state.")
+                    self.env._(
+                        "You cannot delete a server which is not in draft state."
+                    )
                 )
         return super().unlink()

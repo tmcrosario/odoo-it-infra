@@ -23,10 +23,8 @@ class Software(models.Model):
     def _compute_display_name(self):
         for soft in self:
             if soft.category_id.parent_id.name == "Operating System":
-                soft.display_name = "%s %s %s" % (
-                    soft.name,
-                    soft.version or "",
-                    soft.architecture or "",
+                soft.display_name = (
+                    f"{soft.name} {soft.version or ''} {soft.architecture or ''}"
                 )
             else:
-                soft.display_name = "%s %s" % (soft.name, soft.version or "")
+                soft.display_name = f"{soft.name} {soft.version or ''}"

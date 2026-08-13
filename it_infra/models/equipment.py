@@ -3,7 +3,7 @@ from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 
 class Equipment(models.Model):
@@ -23,7 +23,7 @@ class Equipment(models.Model):
         for rec in self:
             if rec.stock_number and len(rec.stock_number) != 4:
                 raise exceptions.ValidationError(
-                    _("Stock number must be 4 characters.")
+                    self.env._("Stock number must be 4 characters.")
                 )
 
     __check_doc_number_re = re.compile(r"([0-9]{3}\-[A-Za-z]{3}\-[0-9]{4})$")
@@ -40,12 +40,12 @@ class Equipment(models.Model):
             if not rec.source_doc_number:
                 continue
             if not self.__check_doc_number_re.match(rec.source_doc_number):
-                raise exceptions.ValidationError(_("Invalid document format"))
+                raise exceptions.ValidationError(self.env._("Invalid document format"))
             tmp = rec.source_doc_number.split("-")[2]
             input_date = datetime.strptime(tmp, "%Y")
             year_limit = datetime.today() - relativedelta(years=20)
             if input_date < year_limit or input_date > datetime.today():
-                raise exceptions.ValidationError(_("Invalid document year."))
+                raise exceptions.ValidationError(self.env._("Invalid document year."))
 
     def action_draft(self):
         self.state = "draft"

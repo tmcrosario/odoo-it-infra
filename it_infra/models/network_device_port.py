@@ -36,7 +36,6 @@ class NetworkDevicePort(models.Model):
             ("it_infra.device", "Device"),
             ("it_infra.network_device", "Network Device"),
         ],
-        string="Connected To",
     )
 
     cable_color = fields.Selection(selection=_cable_colors_)
